@@ -8,11 +8,11 @@ package Model;
 
 /**
  *
- * @author Welcome
+ * @author Welcomee
  */
 public class FingerPrint { 
    public static String setFingerPrint(){
-        String fp = "ab";
+        String fp = "rt";
        return fp;
    }
 }

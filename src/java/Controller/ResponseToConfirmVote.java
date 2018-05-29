@@ -46,18 +46,19 @@ public class ResponseToConfirmVote extends HttpServlet {
             String cname = session.get(1);
             System.out.println(ano + " " + cname);
             int vc = 1;
+            System.out.println("updating isvoted");
             dao.castVote(ano,vc);
             
             if("yes".equalsIgnoreCase(user_response)){
                 dao.updateParty(cname);
                 out.println("<h1 align='center' style='color:green'>Success</h1>");
-                RequestDispatcher rd = request.getRequestDispatcher("Final.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
                 rd.include(request, response);
             }
             else{
                 dao.castFakeVote();
                 out.println("<h1 align='center' style='color:red'> Descrepency Noted</h1>");
-                RequestDispatcher rd = request.getRequestDispatcher("Final.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
                 rd.include(request, response);
             }
             dao.truncate();

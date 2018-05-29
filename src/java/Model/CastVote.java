@@ -16,7 +16,7 @@ public class CastVote {
         this.candidate = "name5";
     }*/
     public String getCandidate(){
-        String candidate = "name8";
+        String candidate = "name7";
         return candidate;
     }
     

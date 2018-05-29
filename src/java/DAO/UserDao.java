@@ -132,6 +132,7 @@ public class UserDao {
             stmt = con.createStatement();
             rs = stmt.executeQuery(isAnoPresent);
             if(rs.next()){
+                System.out.println(" Already Voted");
                 present = true;
             }
             if(!present){
@@ -156,6 +157,9 @@ public class UserDao {
             if(i>0){
                 System.out.println("voted");
             }
+            else{
+                System.out.println("could not insert into isvoted");
+            }
         }catch(Exception e){
             
         }
@@ -173,7 +177,8 @@ public class UserDao {
         }
     }
     public  void castFakeVote(){
-        String fake_vote = "update ec_party set votes = votes+1 where candidate = fake";
+        String fake = "fake";
+        String fake_vote = "update ec_party set votes = votes+1 where candidate='"+ fake +"'";
         try{
             //currentCon = DatabaseConnection.connect();
             stmt = con.createStatement();
