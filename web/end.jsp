@@ -4,6 +4,8 @@
     Author     : Shyamil
 --%>
 
+<%@page import="Model.CastVote"%>
+<%@page import="Model.FingerPrint"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +27,17 @@
     </head>
     <body>
         <h1>Thank You!</h1>
-        <a class="btn btn-default" href="index.html">EXIT</a>
+        <%!
+       static{
+       FingerPrint fn = new FingerPrint();
+
+        fn.setFp("0");
+        }
+
+        %>
+        <%
+        session.invalidate();
+       %>
+        <a class="btn btn-default" href="index.jsp">EXIT</a>
     </body>
 </html>

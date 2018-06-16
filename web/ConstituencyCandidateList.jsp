@@ -40,7 +40,15 @@
                 <div>
                     <button type="submit" class="btn btn-default ">Get Party List</button>
                 </div>
-              
+                <ul>
+                <%
+                ArrayList<String> condis = (ArrayList<String>) request.getAttribute("candis");
+                if(condis!=null){
+                for(String list : condis){
+                %>
+                <li><%=list%></li>
+                <%}}%>
+                </ul>
                     <div>
                         <a class="btn btn-default" href="ConfirmVote.jsp">NEXT</a>
                     </div>

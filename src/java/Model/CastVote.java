@@ -15,9 +15,22 @@ public class CastVote {
    /* public void setCandidate(String candidate){
         this.candidate = "name5";
     }*/
-    public String getCandidate(){
-        String candidate = "name7";
+    public static String candidate;
+    
+    
+    
+    
+//    public String getCandidate(){
+////        String candidate = "name8";
+//        return candidate;
+//    }
+
+    public  String getCandidate() {
         return candidate;
+    }
+
+    public  void setCandidate(String candidate) {
+        CastVote.candidate = candidate;
     }
     
 }

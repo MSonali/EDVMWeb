@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -39,9 +40,10 @@ public class VoterDetailsC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+            HttpSession hs = request.getSession();
             //Get Finger Print Data from Hardware
-            String fp = FingerPrint.setFingerPrint();
+            FingerPrint fn = new FingerPrint();
+            String fp = fn.getFingerPrint();
             System.out.println("Got fp...");
             UserDao dao = new UserDao();
             System.out.println("userfp "+fp);

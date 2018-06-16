@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller;
 
 import DAO.UserDao;
+import Model.CastVote;
+import Model.FingerPrint;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -47,15 +48,18 @@ public class ResponseToConfirmVote extends HttpServlet {
             System.out.println(ano + " " + cname);
             int vc = 1;
             System.out.println("updating isvoted");
-            dao.castVote(ano,vc);
+            dao.castVote(ano, vc);
+            FingerPrint fn = new FingerPrint();
             
-            if("yes".equalsIgnoreCase(user_response)){
+            fn.setFp("0");
+            CastVote vote = new CastVote();
+            vote.setCandidate("0");
+            if ("yes".equalsIgnoreCase(user_response)) {
                 dao.updateParty(cname);
                 out.println("<h1 align='center' style='color:green'>Success</h1>");
                 RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
                 rd.include(request, response);
-            }
-            else{
+            } else {
                 dao.castFakeVote();
                 out.println("<h1 align='center' style='color:red'> Descrepency Noted</h1>");
                 RequestDispatcher rd = request.getRequestDispatcher("end.jsp");

@@ -38,25 +38,26 @@ public class CandidateListC extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             UserDao dao = new UserDao();
-            List candis = new ArrayList<String>();
+            List<String> candis = new ArrayList<String>();
             System.out.println("Calling dao");
             candis = dao.getCandidate();
             System.out.println(candis.size());
+            request.setAttribute("candis", candis);
             //request.setAttribute("lists", candis);
             
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CandidateListC</title>");            
-            out.println("</head>");
-            out.println("<body>");
-           /* out.println("<table>");
-            out.println("<tr>");
-            out.println("<td>");
-            out.println(" "+ candis.get(0));
-            out.println("<h1>Servlet CandidateListC at " + request.getContextPath() + "</h1>");*/
-            out.println("</body>");
-            out.println("</html>");
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet CandidateListC</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//           /* out.println("<table>");
+//            out.println("<tr>");
+//            out.println("<td>");
+//            out.println(" "+ candis.get(0));
+//            out.println("<h1>Servlet CandidateListC at " + request.getContextPath() + "</h1>");*/
+//            out.println("</body>");
+//            out.println("</html>");
             RequestDispatcher rd = request.getRequestDispatcher("ConstituencyCandidateList.jsp");
             rd.include(request, response);
         }

@@ -40,7 +40,16 @@
                 </div>
                 <div class="form-group">
                     <label for="party">Party </label>
-                      ${party}
+                     
+                      <%
+                        String party = (String)session.getAttribute("party");
+                        if(party!=null){
+                            %>
+                            <%=party%>
+                            <%
+                        }
+                      %>
+                      
 
                 </div>
                  <div>

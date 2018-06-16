@@ -12,11 +12,12 @@ package DAO;
  */
 import Model.VoterDetailsModel;
 import Model.VotingProcess;
-import com.mysql.jdbc.Connection;
-import java.sql.ResultSet;
+
+import java.sql.*;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class UserDao {
@@ -140,7 +141,7 @@ public class UserDao {
                 voted = false;
             }
         }catch(Exception e){
-            
+            System.out.println(e);
         }
         vdm.setIsVoted(voted);
         return voted;
@@ -198,7 +199,11 @@ public class UserDao {
             stmt = con.createStatement();
             rs = stmt.executeQuery(getCandidates);
             while(rs.next()){
-                candidates.add(rs.getString("candidate"));
+                String candidate = rs.getString("candidate");
+                if(!candidate.equalsIgnoreCase("fake")){
+                    candidates.add(candidate);
+                }
+                
             }
             System.out.println(candidates);
         }catch(Exception e){
@@ -216,6 +221,7 @@ public class UserDao {
                 System.out.println("session_ano inserted");
             }
         } catch(Exception e){
+            System.out.println(e);
             
         }
     }
@@ -258,5 +264,35 @@ public class UserDao {
         } catch(Exception e){
         
     }
+    }
+    public  HashSet<String>  getFingetId(){
+        String select = "select * from uidai_citizen_detail";
+        HashSet<String> hs = new HashSet<>();
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(select);
+            while(rs.next()){
+                hs.add(rs.getString("fingerprint"));
+            }
+            
+            
+        } catch (Exception e) {
+        }
+        return hs;
+    }
+    public  HashSet<String>  getCandidateId(){
+        String select = "select * from ec_party";
+        HashSet<String> hs = new HashSet<>();
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(select);
+            while(rs.next()){
+                hs.add(rs.getString("candidate"));
+            }
+            
+            
+        } catch (Exception e) {
+        }
+        return hs;
     }
 }

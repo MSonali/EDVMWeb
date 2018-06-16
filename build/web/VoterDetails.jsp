@@ -40,11 +40,22 @@
                     <button type="submit" class="btn btn-default ">Get Info</button>
                 </div>
                      <label for="ano">Ano </label>
-                     ${ano}
+                     <!--${ano}-->
+                     <%
+                    String ano = (String)request.getAttribute("ano");
+                     if(ano!=null){
+                     %>
+                     <%=ano%>
+                     <%}%>
                 </div>
                 <div>
                     <label for="const">Constituency </label>
-                    ${const}
+                      <%
+                    String const1 = (String)request.getAttribute("const");
+                    if(const1!=null){
+                     %>
+                     <%=const1%>
+                    <%}%>
                 <div>
                     <a class="btn btn-default" href="ConstituencyCandidateList.jsp">OK</a>
                 </div>

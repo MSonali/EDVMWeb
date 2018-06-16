@@ -1,0 +1,118 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 181
+Server version: 5.0.45-community-nt MySQL Community Edition (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> create database edvmDB;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use edvmDB;
+Database changed
+mysql> create table isvoted(voted_ano varchar(12) primary key,vote_count integer
+);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql>  create table ec_ party(candidate varchar(10),votes numeric);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql>  insert into ec_party values("name1",0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  insert into party values("name2",0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  insert into party values("name3",0);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into party values("name4",0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  insert into party values("name5",0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  insert into party values("name6",0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  insert into party values("name7",0);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into party values("name8",0);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into party values("name9",0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  insert into party values("name0",0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  insert into party values("fake",0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from party;
++-----------+-------+
+| candidate | votes |
++-----------+-------+
+| name1     |     0 |
+| name2     |     0 |
+| name3     |     0 |
+| name4     |     0 |
+| name5     |     0 |
+| name6     |     0 |
+| name7     |     0 |
+| name8     |     0 |
+| name9     |     0 |
+| name0     |     0 |
+| fake      |     0 |
++-----------+-------+
+11 rows in set (0.00 sec)
+
+mysql> create table nvsp_constituency(v_ano varchar(12) primary key,v_name varch
+ar(15),v_fname varchar(15),gender char(1),age integer,state varchar(15),district
+ varchar(15),v_constituency varchar(12));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql>  insert into nvsp_constituency values("1111","aaaa","zzzz",'F',22,"tn","c
+hennai","villivakkam");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from nvsp_constituency;
++-------+--------+---------+--------+------+-------+----------+----------------+
+
+| v_ano | v_name | v_fname | gender | age  | state | district | v_constituency |
+
++-------+--------+---------+--------+------+-------+----------+----------------+
+
+| 1111  | aaaa   | zzzz    | F      |   22 | tn    | chennai  | villivakkam    |
+
++-------+--------+---------+--------+------+-------+----------+----------------+
+
+1 row in set (0.00 sec)
+
+mysql>  create table uidai_citizen_detail(ano varchar(12) primary key,name varch
+ar(15),father_name varchar(15),gender char(1),dob date,state varchar(15),distric
+t varchar(15),phno numeric(10),fingerprint varchar(12));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql>  insert into citizen_detail values("1111","aaaa","zzzz",'F','1996-10-11',
+"tn","chennai",8939428290,"az");
+ERROR 1146 (42S02): Table 'edvmdb.citizen_detail' doesn't exist
+mysql>  insert into uidai_citizen_detail values("1111","aaaa","zzzz",'F','1996-1
+0-11',"tn","chennai",8939428290,"az");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from uidai_citizen_detail;
++------+------+-------------+--------+------------+-------+----------+----------
+--+-------------+
+| ano  | name | father_name | gender | dob        | state | district | phno
+  | fingerprint |
++------+------+-------------+--------+------------+-------+----------+----------
+--+-------------+
+| 1111 | aaaa | zzzz        | F      | 1996-10-11 | tn    | chennai  | 893942829
+0 | az          |
++------+------+-------------+--------+------------+-------+----------+----------
+--+-------------+
+1 row in set (0.00 sec)
+
+mysql>
