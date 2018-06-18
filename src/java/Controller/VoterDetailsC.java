@@ -63,7 +63,7 @@ public class VoterDetailsC extends HttpServlet {
             }
             else{
                 out.println("<h1 align='center' style='color:red'>Under Age or Already Voted</h1>");
-                RequestDispatcher rd = request.getRequestDispatcher("VoterDetails.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
                 rd.include(request, response);
             }
            /* out.println("<!DOCTYPE html>");
