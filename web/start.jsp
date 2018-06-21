@@ -4,7 +4,8 @@
     Author     : Kumaresan
 --%>
 
-<%@page import="DAO.SearialPort"%>
+
+<%@page import="DAO.SearialPor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,8 +15,11 @@
     </head>
     <body>
        <%
-       SearialPort.readSerial();
+           
+       SearialPor.readSerial();
+     
        response.sendRedirect("homepage.jsp");
+       
        %>
     </body>
 </html>

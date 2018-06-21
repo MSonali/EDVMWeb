@@ -61,7 +61,7 @@ public class ResponseToConfirmVote extends HttpServlet {
                 rd.include(request, response);
             } else {
                 dao.castFakeVote();
-                out.println("<h1 align='center' style='color:red'> Descrepency Noted</h1>");
+                out.println("<h1 align='center' style='color:red'> Discrepancy Noted</h1>");
                 RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
                 rd.include(request, response);
             }

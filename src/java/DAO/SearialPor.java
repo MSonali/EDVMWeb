@@ -1,4 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DAO;
+
 
 import Model.CastVote;
 import Model.FingerPrint;
@@ -13,12 +19,13 @@ class Check {
 
 }
 
-public class SearialPort {
+public class SearialPor {
 
 //    public static SerialPort serialPort;
     public static boolean sentBytes;
+    public static SerialPort serialPort = new SerialPort("COM8");;
 
-    public static FingerPrint readSerial() {
+    public static void readSerial() {
         FingerPrint fng = null;
         FingerPrint fn = new FingerPrint();
         String fin = "";
@@ -32,21 +39,17 @@ public class SearialPort {
 
         // initialization with selecting port for communication
 //      SerialPort serialPort = new SerialPort("/dev/ttyUSB0");
-        SerialPort serialPort = new SerialPort("COM8");
-
+        
+        
         try {
             // open port for communication
-            try {
-//            serialPort.closePort();
-            } catch (Exception e) {
-                System.out.println(e);
-                e.printStackTrace();
-            }
+
             boolean f = false;
+            if(!serialPort.isOpened()){
             try {
-
+                
                 f = serialPort.openPort();
-
+                
             } catch (Exception e) {
                 System.out.println(e);
                 e.printStackTrace();
@@ -66,7 +69,7 @@ public class SearialPort {
                 }
 //                serialPort.writeInt(1);
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -75,7 +78,7 @@ public class SearialPort {
                 System.err.println(port);
                 if (port != null) {
                     System.out.println("statred>............");
-                    if (port.contains("F")) {
+                    if (port.contains("F") && !port.contains("C")) {
                         port = port.replaceAll("[^1-9A-Z\\s]", "");
 
 //             System.out.println(port.replaceAll("[^0-9\\s]", ""));
@@ -93,15 +96,16 @@ public class SearialPort {
                                 fng = new FingerPrint();
                                 fng.setFp(String.valueOf(c1));
 //                                FingerPrint.setFp(String.valueOf(c1));
-
                                 fin = String.valueOf(c1);
-                                serialPort.writeString("a");
+//                                serialPort.writeString("a");
+                                port = null;
+                                break;
 //                        serialPort.closePort();
 //                        f = false;
                             }
 
                         }
-                    }else if(port.contains("C"))  {
+                    } else if (port.contains("C")) {
                         System.out.println(port);
                         port = port.replaceAll("[^1-9A-Z\\s]", "");
                         char c[] = port.toCharArray();
@@ -113,9 +117,14 @@ public class SearialPort {
 //                                CastVote.setCandidate(String.valueOf(c1));
                                 CastVote v = new CastVote();
                                 v.setCandidate(String.valueOf(c1));
+
                                 port = null;
-                            serialPort.closePort();
-                            f= false;
+                                if (serialPort.isOpened()) {
+                                    f = false;
+                                    serialPort.closePort();
+                                    break;
+                                }
+                                
 //                                serialPort.closePort();
 //                        f = false;
                             }
@@ -126,18 +135,20 @@ public class SearialPort {
 
                 System.out.println("end");
             } // close port
-//            serialPort.closePort();
+//      
+            }
         } catch (SerialPortException ex) {
             System.out.println(ex);
             ex.printStackTrace();
-//            readSerial();
+//   
         }
         System.out.println("hello");
-        return fng;
+       
 
     }
 
     public static void main(String[] args) {
         readSerial();
+        
     }
 }

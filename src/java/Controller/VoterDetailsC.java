@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller;
+
+import DAO.SearialPor;
 
 import DAO.UserDao;
 import Model.FingerPrint;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import jssc.SerialPortException;
 
 /**
  *
@@ -46,27 +47,34 @@ public class VoterDetailsC extends HttpServlet {
             String fp = fn.getFingerPrint();
             System.out.println("Got fp...");
             UserDao dao = new UserDao();
-            System.out.println("userfp "+fp);
+            System.out.println("userfp " + fp);
             String ano = dao.getAno(fp);
             dao.addSessionAno(ano);
             System.out.println(ano);
-            
+
             int age = VotingProcess.getAge(ano);
             String constituency = dao.getConstituencyDetails(ano);
             boolean isVoted = dao.isVotingDone(ano);
-            
-            if(age>=18&&!(isVoted)){
+
+            if (age >= 18 && !(isVoted)) {
+                try {
+                    SearialPor.serialPort.writeString("a");
+                } catch (SerialPortException s) {
+                    System.out.println(s);
+                }
                 request.setAttribute("ano", ano);
                 request.setAttribute("const", constituency);
                 RequestDispatcher rd = request.getRequestDispatcher("VoterDetails.jsp");
                 rd.include(request, response);
-            }
-            else{
+            } else {
+                FingerPrint fn1 = new FingerPrint();
+
+                fn1.setFp("0");
                 out.println("<h1 align='center' style='color:red'>Under Age or Already Voted</h1>");
                 RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
                 rd.include(request, response);
             }
-           /* out.println("<!DOCTYPE html>");
+            /* out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet VoterDetailsC</title>");            
@@ -75,7 +83,7 @@ public class VoterDetailsC extends HttpServlet {
             out.println("<h1>Servlet VoterDetailsC at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");*/
-            
+
         }
     }
 

@@ -1,6 +1,6 @@
 
 <%@page import="Model.FingerPrint"%>
-<%@page import="DAO.SearialPort"%>
+
 
         <%
 //            out.print("hello");
@@ -27,8 +27,11 @@
             String s = f.getFingerPrint();
             if(s!=null){
                 out.println(s);
+                out.println("<br/>");
+              out.println("<H3> Press the icon </H3>");
             }
-            out.println(fs);
+            //out.println("Scan Finger");
+          
             if(fs!=null){
 //       String fingetPrint =   fs.getFingerPrint();
 //       out.println(fingetPrint);
@@ -37,6 +40,8 @@
 //              
 //            }
             out.println(fs);
+             out.println("<br/>");
+              out.println("<H3> Press the icon </H3>");
             }
         %>
   

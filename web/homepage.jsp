@@ -72,7 +72,7 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.html">VotingApp</a>
+                        <a class="navbar-brand" href="index.jsp">VotingApp</a>
                     </div>
                 </div>
             </nav>
@@ -82,6 +82,7 @@
             <form action ="VoterDetails.jsp" method="post">
                 <div class="form-group">
                     <a href="VoterDetails.jsp">
+                        <h1>Scan Finger</h1>
                         <img src="https://media.kasperskydaily.com/wp-content/uploads/sites/92/2015/12/06023350/fingerprints-FB-1.jpg" class="img_responsive" alt="Cinque Terre" height="100">
                     </a>
                 </div>
@@ -97,9 +98,10 @@
             FingerPrint f=new FingerPrint();
             String s = f.getFingerPrint();
             if(s!=null){
-                out.println(s);
+//                out.println(s);
             }
-            out.println(fs);
+            //out.println("Press icon");
+//           out.println(fs);
             if(fs!=null){
 //       String fingetPrint =   fs.getFingerPrint();
 //       out.println(fingetPrint);
@@ -107,7 +109,7 @@
 ////                response.sendRedirect("VoterDetails.jsp");
 //              
 //            }
-            out.println(fs);
+//            out.println(fs);
             }
             %>
     </body>

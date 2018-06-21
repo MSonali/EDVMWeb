@@ -24,12 +24,14 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-             <a class="btn btn-default" href="start.jsp">START</a> 
-             <%!
-             static{
-//             FingerPrint.setFp(null);
-    }
-             %>
+            <a class="btn btn-default" href="start.jsp">START</a> 
+            <%!
+                static {
+                    FingerPrint fn = new FingerPrint();
+
+                    fn.setFp("0");
+                }
+            %>
         </div>
     </body>
 </html>

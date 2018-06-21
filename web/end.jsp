@@ -4,6 +4,7 @@
     Author     : Shyamil
 --%>
 
+<%@page import="DAO.SearialPor"%>
 <%@page import="Model.CastVote"%>
 <%@page import="Model.FingerPrint"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,6 +33,12 @@
        FingerPrint fn = new FingerPrint();
 
         fn.setFp("0");
+if(SearialPor.serialPort.isOpened()){
+      try {
+                SearialPor.serialPort.closePort();
+          } catch (Exception e) {
+          }
+}
         }
 
         %>
