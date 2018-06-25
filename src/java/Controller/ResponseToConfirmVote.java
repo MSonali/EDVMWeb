@@ -48,13 +48,14 @@ public class ResponseToConfirmVote extends HttpServlet {
             System.out.println(ano + " " + cname);
             int vc = 1;
             System.out.println("updating isvoted");
-            dao.castVote(ano, vc);
+            //dao.castVote(ano, vc);
             FingerPrint fn = new FingerPrint();
             
             fn.setFp("0");
             CastVote vote = new CastVote();
             vote.setCandidate("0");
             if ("yes".equalsIgnoreCase(user_response)) {
+                dao.castVote(ano, vc);
                 dao.updateParty(cname);
                 out.println("<h1 align='center' style='color:green'>Success</h1>");
                 RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
