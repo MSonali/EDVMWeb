@@ -70,7 +70,7 @@ public class VoterDetailsC extends HttpServlet {
                 FingerPrint fn1 = new FingerPrint();
 
                 fn1.setFp("0");
-                out.println("<h1 align='center' style='color:red'>Under Age or Already Voted</h1>");
+                out.println("<h1 align='center' style='color:red'>Already Voted</h1>");
                 RequestDispatcher rd = request.getRequestDispatcher("end.jsp");
                 rd.include(request, response);
             }

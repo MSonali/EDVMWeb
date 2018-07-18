@@ -23,7 +23,7 @@ public class SearialPor {
 
 //    public static SerialPort serialPort;
     public static boolean sentBytes;
-    public static SerialPort serialPort = new SerialPort("COM8");;
+    public static SerialPort serialPort = new SerialPort("COM5");;
 
     public static void readSerial() {
         FingerPrint fng = null;
@@ -75,6 +75,7 @@ public class SearialPor {
                 }
 
                 String port = serialPort.readString();
+                System.out.println("Port returns: " + port);
                 System.err.println(port);
                 if (port != null) {
                     System.out.println("statred>............");
